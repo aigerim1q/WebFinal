@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Определение переменных */
+:root {
+  --font-primary: 'Roboto', sans-serif;
+  --color-bg: #f8f8f8;
+  --color-container-bg: #fff;
+  --color-primary: #051267;
+  --color-primary-hover: #000000;
+  --color-secondary: #042b7a;
+  --color-secondary-hover: #090d61;
+  --color-heading: #4a4040;
+  --color-alt-heading: #0b3f88;
+  --color-label: #17058b;
+  --color-error: #ff0000;
+  --color-success: green;
+  --box-shadow: 0 4px 12px rgba(4, 15, 74, 0.15);
+  --transition-speed: 0.3s;
+}
+
+/* Сброс стилей и базовые настройки */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-primary);
+}
+
+body {
+  background: var(--color-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Основной контейнер */
+.container {
+  background-color: var(--color-container-bg);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Заголовки */
+h1, h2 {
+  color: var(--color-primary);
+}
+
+h2 {
+  color: var(--color-primary);
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* Сообщения об успехе */
+.success-message {
+  color: var(--color-success);
+  margin-bottom: 15px;
+}
+
+/* Формы */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.email-form,
+.qr-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+
+.email-form label,
+.qr-form label {
+  font-size: 16px;
+  color: var(--color-label);
+  margin-bottom: 5px;
+}
+
+.email-form input,
+.email-form textarea,
+.qr-form input,
+.qr-form textarea {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.email-form textarea,
+.qr-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Кнопки */
+button {
+  padding: 12px;
+  font-size: 18px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease;
+}
+
+button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.qr-form button {
+  background-color: var(--color-secondary);
+}
+
+.qr-form button:hover {
+  background-color: var(--color-secondary-hover);
+}
+
+/* Ссылка "назад" */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  text-decoration: none;
+  font-size: 16px;
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.back-link:hover {
+  background-color: var(--color-secondary);
+  color: #fff;
+}
+
+/* Стили для постов */
+#posts {
+  margin-top: 20px;
+}
+
+.post {
+  background: rgb(255, 233, 233);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.delete-btn {
+  background-color: #3b3435;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+  border-radius: 3px;
+}
+
+.delete-btn:hover {
+  background-color: #312b2c;
+}
+
+/* Стили для виджета погоды */
+.weather-container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.weather-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.input-group button {
+  padding: 12px 20px;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease;
+}
+
+.input-group button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+#weatherResult {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.weather-info h3 {
+  color: var(--color-primary);
+  margin-bottom: 15px;
+}
+
+.weather-info p {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+.weather-info img {
+  max-width: 100px;
+  margin-bottom: 15px;
+}
+
+.weather-info iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+/* Стили для ошибок */
+.error {
+  color: var(--color-error);
+  font-weight: bold;
+}
