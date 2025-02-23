@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="weather-container">
+    <h2>Check the Weather</h2>
+    <div class="input-group">
+      <input type="text" id="cityInput" placeholder="Enter city name">
+      <button onclick="fetchWeather()">Get Weather</button>
+    </div>
+    <div id="weatherResult"></div>
+  </div>
+
+  <script>
+    async function fetchWeather() {
+      const city = document.getElementById("cityInput").value;
+      if (!city) {
+        alert("Please enter a city name.");
+        return;
+      }
+      try {
+        // Если нужно, можно передать query-параметры для валют и т.п.
+        const response = await fetch(`/weather-data?place=${city}`);
+        const data = await response.json();
+
+        if (data.error) {
+          document.getElementById("weatherResult").innerHTML = `<p class="error">${data.error}</p>`;
+        } else {
+          document.getElementById("weatherResult").innerHTML = `
+            <div class="weather-info">
+              <h3>Weather in ${data.place}</h3>
+              <img src="${data.icon_url}" alt="Weather Icon">
+              <p><strong>Temperature:</strong> ${data.temperature}°C</p>
+              <p><strong>Feels Like:</strong> ${data.feels_like}°C</p>
+              <p><strong>Description:</strong> ${data.description}</p>
+              <p><strong>Humidity:</strong> ${data.humidity}%</p>
+              <p><strong>Pressure:</strong> ${data.pressure} hPa</p>
+              <p><strong>Wind Speed:</strong> ${data.wind_speed} m/s</p>
+              <p><strong>Country:</strong> ${data.country}</p>
+              <p><strong>Rain (last 3 hours):</strong> ${data.rain} mm</p>
+              <p><strong>Local Time:</strong> ${data.local_time}</p>
+
+              <h3>COVID-19 Data:</h3>
+              <p><strong>Cases:</strong> ${data.covid.cases}</p>
+              <p><strong>Deaths:</strong> ${data.covid.deaths}</p>
+              <p><strong>Recovered:</strong> ${data.covid.recovered}</p>
+
+              <h3>Currency Exchange:</h3>
+              <p><strong>${data.currency.base} to ${data.currency.target}:</strong> ${data.currency.exchangeRate}</p>
+              
+              <h3>Air Quality:</h3>
+              <p><strong>PM2.5:</strong> ${data.air_quality.pm25} µg/m³</p>
+              <p><strong>PM10:</strong> ${data.air_quality.pm10} µg/m³</p>
+              <p><strong>Ozone (O3):</strong> ${data.air_quality.o3} µg/m³</p>
+              <p><strong>Nitrogen Dioxide (NO2):</strong> ${data.air_quality.no2} µg/m³</p>
+              <p><strong>Sulfur Dioxide (SO2):</strong> ${data.air_quality.so2} µg/m³</p>
+              <p><strong>Carbon Monoxide (CO):</strong> ${data.air_quality.co} µg/m³</p>
+              
+              
+              
+              
+              <h3>Location on Map:</h3>
+              <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=${data.coordinates.lon - 0.05},${data.coordinates.lat - 0.05},${data.coordinates.lon + 0.05},${data.coordinates.lat + 0.05}&marker=${data.coordinates.lat},${data.coordinates.lon}" frameborder="0"></iframe>
+            </div>
+          `;
+        }
+      } catch (error) {
+        document.getElementById("weatherResult").innerHTML = `<p class="error">An error occurred while fetching weather data.</p>`;
+      }
+    }
+  </script>
+
+  <!-- Подключаем Font Awesome для иконки стрелки (если требуется) -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

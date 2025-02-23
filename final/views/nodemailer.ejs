@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Send Email</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Send an Email</h2>
+    <% if (message) { %>
+      <p class="success-message"><%= message %></p>
+    <% } %>
+    <form action="/send-email" method="POST" class="email-form">
+      <label for="recipient">Recipient:</label>
+      <input type="email" name="recipient" id="recipient" placeholder="Enter recipient's email" required>
+
+      <label for="subject">Subject:</label>
+      <input type="text" name="subject" id="subject" placeholder="Enter email subject" required>
+
+      <label for="message">Message:</label>
+      <textarea name="message" id="message" placeholder="Type your message here..." required></textarea>
+
+      <button type="submit">Send Email</button>
+    </form>
+  </div>
+</body>
+</html>
